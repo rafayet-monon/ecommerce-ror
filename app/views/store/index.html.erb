@@ -1,0 +1,54 @@
+<div id="sidebar" class="span3">
+
+  <div class="well well-small">
+    <h3>Categories</h3>
+    <ul class="nav nav-list">
+
+        <% @categories.each do |category| %>
+      <li><span class="icon-chevron-right"><%= link_to category.category_name, category_product_path(category) %></span></li>
+
+      <% end %>
+      <li style="border:0"> &nbsp;</li>
+      <li> <a class="totalInCart" href="cart.html"><strong>Total Amount  <span class="badge badge-warning pull-right" style="line-height:18px;">$448.42</span></strong></a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="span9">
+ <div class="well well-small">
+  <h3>Our Products </h3>
+  <div>
+    <ul class="thumbnails">
+
+      <% @products.each do |product| %>
+
+      <li class="span4">
+        <div class="thumbnail">
+         <%= link_to '', product_details_path(product) , :class => "overlay" %>
+
+          <%= link_to product_details_path(product), :class => 'zoomTool' do %><span class="icon-search"></span>Quick View<% end %>
+
+
+          <%= link_to product_details_path(product) do %>
+              <%= image_tag product.image , style: "height: 200px; width:250px " %>
+          <% end %>
+
+          <div class="caption cntr">
+            <p><%= product.product_name %></p>
+            <p><strong> $<%= product.price_sell %></strong></p>
+            <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
+            <div class="actionList">
+              <a class="pull-left" href="#">Add to Wish List </a>
+              <a class="pull-left" href="#"> Add to Compare </a>
+            </div>
+            <br class="clr">
+          </div>
+        </div>
+      </li>
+
+      <% end %>
+
+    </ul>
+  </div>
+ </div>
+</div>

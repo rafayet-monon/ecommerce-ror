@@ -1,0 +1,116 @@
+<div class="well">
+
+  <%= form_for @product , html: {multipart:true } do |f| %>
+
+      <h3>Edit Product</h3>
+
+
+      <div class="control-group">
+        <%= f.label :product_name , class: "control-label" %>
+        <div class="controls">
+          <%= f.text_field :product_name, placeholder: 'Name'  %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :brand_id , class: "control-label" %>
+        <div class="controls">
+          <%= f.select :brand_id, @brand.collect {|brand| [brand.brand_name, brand.id]}  %>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="control-group">
+        <%= f.label :buying_price , class: "control-label" %>
+        <div class="controls">
+          <%= f.text_field :price_bought, placeholder: 'Price'  %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :selling_price , class: "control-label" %>
+        <div class="controls">
+          <%= f.text_field :price_sell, placeholder: 'Price'  %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :category_id , class: "control-label" %>
+        <div class="controls">
+          <%= f.select :category_id, @categories.collect {|category| [category.category_name, category.id]} ,{class: 'form-control category-change', data: {required: true}} %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :subcategory_id , class: "control-label" %>
+        <div class="controls">
+          <% if @product.new_record? %>
+
+              <%= f.select :subcategory_id, '', {prompt: "Select Sub Category.."},
+                           {class: 'form-control', id: 'product_sub_category', disabled: true} %>
+
+          <% elsif @product.category_id.present? %>
+
+              <%= f.select :subcategory_id, options_for_select(@subcategory.collect { |category| [category.category_name, category.id] },
+                                                               f.object.subcategory_id),
+                           {:include_blank => "Select Subcategory..."},
+                           {class: 'form-control', id: 'product_sub_category', disabled: true} %>
+          <% end %>
+        </div>
+      </div>
+
+
+
+
+
+
+
+      <!-- File Button -->
+      <div class="controll-group">
+        <label class="control-label" for="filebutton">Image</label>
+        <div class="controls">
+          <%= image_tag @product.image.thumb.url %>
+          <%= f.file_field :image %>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="control-group">
+        <div class="controls">
+          <input type="submit" name="submitAccount" value="Update" class="exclusive shopBtn">
+        </div>
+      </div>
+
+  <% end %>
+
+</div>
+
+<script type="text/javascript">
+
+    <% unless @product.new_record? %>
+    <% if @subcategory.present? %>
+    $('#product_sub_category').prop('disabled', false);
+    <% end %>
+    <% end %>
+
+
+    $('#product_category_id').change(function () {
+
+        if ($(this).val().length > 0) {
+            $.ajax({
+                url: "/categories/" + $(this).val() + "/subcategory",
+                type: 'get',
+                dataType: 'script'
+            });
+        }
+
+        else {
+
+            $('#product_sub_category').find('option:gt(0)').remove();
+            $('#product_sub_category').prop('disabled', true);
+        }
+    });
+
+
+</script>

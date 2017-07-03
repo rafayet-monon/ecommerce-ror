@@ -1,0 +1,37 @@
+<div class="well">
+
+  <%= form_for @category , html: {class: "form-horizontal"} do |f| %>
+
+    <% if params[:is_subcategory] %><h3>Add Sub Category</h3> <% else %> <h3>Add Category</h3> <% end %>
+    <div class="control-group">
+      <%= f.label :category_name , class: "control-label" %>
+      <!--<label class="control-label">Category Name<sup>*</sup></label>-->
+      <div class="controls">
+        <%= f.text_field :category_name, placeholder: 'Name'  %>
+        <!--<input type="text" placeholder="Name">-->
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :category_description , class: "control-label" %>
+      <div class="controls">
+        <%= f.text_area :category_description, placeholder: 'Short Description'  %>
+      </div>
+    </div>
+
+      <div class="control-group">
+      <% if params[:is_subcategory]%>
+          <%= f.label :parent_id , class: "control-label" %>
+            <div class="controls">
+          <%= f.select :parent_id, @categories.collect {|category| [category.category_name, category.id]}  %>
+        </div>
+      <% end %>
+        </div>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit 'Save Category', class:'shopBtn exclusive' %>
+        <!--<input type="submit" name="submitAccount" value="Add" class="shopBtn exclusive">-->
+      </div>
+    </div>
+
+<% end %>
+</div>

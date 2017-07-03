@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EcommerceRor</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!--
+	Upper Header Section
+-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="topNav">
+    <div class="container">
+      <div class="alignR">
+
+        <a> <span class="icon-home"></span><%= link_to 'Home', root_path %></a>
+
+        <% if admin_signed_in? %>
+
+        <a><span class="icon-edit"></span><%= link_to 'Categories', categories_path %></a>
+        <a><span class="icon-edit"></span><%= link_to 'Brands', brands_path %></a>
+        <a ><span class="icon-paper-clip"></span><%= link_to 'Add Products', products_path %></a>
+        <a ><span class="icon-edit"></span><%= link_to('Edit registration', edit_admin_registration_path) %></a>
+        <a ><span class="icon-signout"></span> <%= link_to('Logout', destroy_admin_session_path, method: :delete) %></a>
+        <% end %>
+
+        <% if user_signed_in? %>
+            <a href="#"><span class="icon-user"></span> My Account</a>
+            <a ><span class="icon-edit"></span><%= link_to('Edit Account', edit_user_registration_path) %></a>
+
+            <a ><span class="icon-signout"></span> <%= link_to('Logout', destroy_user_session_path, method: :delete) %></a>
+        <% else %>
+            <a ><span class="icon-edit"></span><%= link_to('Register', new_user_registration_path) %></a>
+      <% end %>
+        <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+Lower Header Section
+-->
+<div class="container">
+  <div id="gototop"> </div>
+  <header id="header">
+
+  </header>
+
+  <!--
+  Navigation Bar Section
+  -->
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><%= link_to 'Home', root_path %></li>
+            <li><a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a></li>
+          </ul>
+          <form action="#" class="navbar-search pull-left">
+            <input type="text" placeholder="Search" class="search-query span2">
+          </form>
+          <ul class="nav pull-right">
+            <% if admin_signed_in? || user_signed_in? %>
+
+                <% else %>
+
+            <li>
+              <%= link_to('Admin Login', new_admin_session_path) %>
+            </li>
+            <li>
+              <%= link_to('User Login', new_user_session_path) %>
+            </li>
+                <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar-->
+<div class="row">
+  <% if notice %>
+  <p class="notice"><%= notice %></p>
+
+  <% end %>
+
+  <% if alert %>
+  <p class="alert"><%= alert %></p>
+  <% end %>
+
+
+    <%= yield %>
+
+
+</div>
+
+  <!-- sidebar ends-->
+
+
+</div>
+
+
+<!--
+Footer
+-->
+<footer class="footer">
+  <div class="row-fluid">
+    <div class="span2">
+      <h5>Your Account</h5>
+      <a href="#">YOUR ACCOUNT</a><br>
+      <a href="#">PERSONAL INFORMATION</a><br>
+      <a href="#">ADDRESSES</a><br>
+      <a href="#">DISCOUNT</a><br>
+      <a href="#">ORDER HISTORY</a><br>
+    </div>
+    <div class="span2">
+      <h5>Iinformation</h5>
+      <a href="contact.html">CONTACT</a><br>
+      <a href="#">SITEMAP</a><br>
+      <a href="#">LEGAL NOTICE</a><br>
+      <a href="#">TERMS AND CONDITIONS</a><br>
+      <a href="#">ABOUT US</a><br>
+    </div>
+    <div class="span2">
+      <h5>Our Offer</h5>
+      <a href="#">NEW PRODUCTS</a> <br>
+      <a href="#">TOP SELLERS</a><br>
+      <a href="#">SPECIALS</a><br>
+      <a href="#">MANUFACTURERS</a><br>
+      <a href="#">SUPPLIERS</a> <br/>
+    </div>
+    <div class="span6">
+      <h5>The standard chunk of Lorem</h5>
+      The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for
+      those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et
+      Malorum" by Cicero are also reproduced in their exact original form,
+      accompanied by English versions from the 1914 translation by H. Rackham.
+    </div>
+  </div>
+</footer>
+</div><!-- /container -->
+
+<div class="copyright">
+  <div class="container">
+
+    <span>Copyright &copy; 2017<br>ACE</span>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<h4>All Categories</h4>
+<div class="table-responsive">
+
+
+  <table id="mytable" class="table table-bordred table-striped">
+
+    <thead>
+
+
+    <th>Product Name</th>
+    <th>Product Image</th>
+    <th>Brand</th>
+    <th>Category</th>
+    <th>Sub Category</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+
+    <tbody>
+    <% @products.each do |product| %>
+        <tr>
+          <td><%= product.product_name %></td>
+          <td><%= image_tag product.image.thumb.url %></td>
+          <td><%= product.brand.brand_name %></td>
+          <td><%= product.category.category_name %></td>
+          <td><%= product.subcategory.category_name %></td>
+          <td><%= link_to '', edit_product_path(product), class: 'btn btn-primary btn-xs icon-edit' %></td>
+          <td><%= link_to '', product_path(product), class: 'btn btn-danger btn-xs icon-trash', method: :delete,
+                          data: { confirm: 'Are you sure you want to delete?' } %></td>
+
+        </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+</div>
+
+<div class="control-group">
+  <div class="controls">
+    <%= link_to 'Add Product', new_product_path , class:"shopBtn exclusive" %>
+
+  </div>
+</div>
+

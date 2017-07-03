@@ -1,0 +1,30 @@
+<h4>Sub Categories of <%= @category.category_name %></h4>
+
+<div class="table-responsive">
+
+
+  <table id="mytable" class="table table-bordred table-striped">
+
+    <thead>
+
+
+    <th>Category Name</th>
+    <th>Category Description</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+
+    <tbody>
+    <% @subcategories.each do |category| %>
+        <tr>
+          <td><%= category.category_name %></td>
+          <td><%= category.category_description %></td>
+          <td><%= link_to '', edit_category_path(category), class: 'btn btn-primary btn-xs icon-edit' %></td>
+          <td><%= link_to '', category_path(category), class: 'btn btn-danger btn-xs icon-trash', method: :delete,
+                          data: { confirm: 'Are you sure you want to delete?' } %></td>
+        </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+</div>

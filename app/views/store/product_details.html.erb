@@ -1,0 +1,50 @@
+<div class="span">
+  <div class="well well-small">
+    <div class="row-fluid">
+      <div class="span5">
+        <%= image_tag @product.image , style: "height: 450px; width:400px " %>
+      </div>
+
+      <div class="span7">
+        <h3><%= @product.product_name %> [$<%= @product.price_sell %>]</h3>
+        <hr class="soft"/>
+
+        <form class="form-horizontal qtyFrm">
+          <div class="control-group">
+            <label class="control-label"><span>$<%= @product.price_sell %></span></label>
+            <div class="controls">
+              <input type="number" class="span6" placeholder="Qty.">
+            </div>
+          </div>
+
+
+            <button type="submit" class="shopBtn"><span class=" icon-shopping-cart"></span> Add to cart</button>
+        </form>
+      </div>
+    </div>
+    <hr class="softn clr"/>
+
+
+    <ul id="productDetail" class="nav nav-tabs">
+      <li class="active"><a href="#home" data-toggle="tab">Product Details</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content tabWrapper">
+      <div class="tab-pane fade active in" id="home">
+        <h4>Product Information</h4>
+        <table class="table table-striped">
+          <tbody>
+          <tr class="techSpecRow"><td class="techSpecTD1">Name:</td><td class="techSpecTD2"><%= @product.product_name %></td></tr>
+          <tr class="techSpecRow"><td class="techSpecTD1">Price:</td><td class="techSpecTD2">$<%= @product.price_sell %></td></tr>
+          <tr class="techSpecRow"><td class="techSpecTD1">Category:</td><td class="techSpecTD2"><%= @product.category.category_name %></td></tr>
+          <tr class="techSpecRow"><td class="techSpecTD1">Sub Category:</td><td class="techSpecTD2"><%= @product.subcategory.category_name %></td></tr>
+          <tr class="techSpecRow"><td class="techSpecTD1">Brand:</td><td class="techSpecTD2"><%= @product.brand.brand_name %></td></tr>
+          </tbody>
+        </table>
+
+              </div>
+
+    </div>
+
+  </div>
+</div>
+<!-- Body wrapper -->
