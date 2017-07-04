@@ -1,0 +1,2 @@
+$('#item-change').html('Total Item : <%= @cart.line_items.count %>');
+$('#price-change').html('<%= number_to_currency(@cart.total_price) %>');

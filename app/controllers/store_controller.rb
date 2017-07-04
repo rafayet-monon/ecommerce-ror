@@ -5,6 +5,7 @@ class StoreController < ApplicationController
   def index
     @products=Product.all
     @categories=Category.all.where(parent_id: nil)
+    @cart=current_cart
   end
 
   def product_by_category

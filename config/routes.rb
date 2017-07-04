@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  resources :orders
+  resources :line_items
+  resources :carts
+
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions" }
   devise_for :admins, path: 'admins', controllers: {session: "admins/sessions"}
   root 'store#index'

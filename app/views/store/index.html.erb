@@ -8,9 +8,29 @@
       <li><span class="icon-chevron-right"><%= link_to category.category_name, category_product_path(category) %></span></li>
 
       <% end %>
+
       <li style="border:0"> &nbsp;</li>
-      <li> <a class="totalInCart" href="cart.html"><strong>Total Amount  <span class="badge badge-warning pull-right" style="line-height:18px;">$448.42</span></strong></a></li>
+
+      <li>
+
+
+            <span class="icon-shopping-cart" id="item-change">Total Item : <%= @cart.line_items.count %></span>
+
+            <span class="badge badge-warning pull-right " id="price-change" style="line-height:18px;"><%= number_to_currency(@cart.total_price) %></span>
+
+      </li>
+
+
+
     </ul>
+
+
+
+
+  </div>
+  <div>
+  <%= link_to "View Cart" , cart_path(@cart.id) , class: ' shopBtn' %></span>
+  <%= link_to "Checkout" , new_order_path , class: ' shopBtn' %></span>
   </div>
 </div>
 
@@ -36,7 +56,7 @@
           <div class="caption cntr">
             <p><%= product.product_name %></p>
             <p><strong> $<%= product.price_sell %></strong></p>
-            <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
+            <h4><%= button_to  'Add to Cart', line_items_path(:product_id => product) , class: 'shopBtn', :remote => true %></h4>
             <div class="actionList">
               <a class="pull-left" href="#">Add to Wish List </a>
               <a class="pull-left" href="#"> Add to Compare </a>
