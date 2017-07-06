@@ -8,14 +8,14 @@ class ProductsController < ApplicationController
   end
 
   def new
-  @product =Product.new
-  @categories=Category.all.where(parent_id: nil)
-  @brand=Brand.all
+    @product =Product.new
+    @categories=Category.all.where(parent_id: nil)
+    @brand=Brand.all
 
-  respond_to do |format|
-    format.js
-    format.html
-  end
+    respond_to do |format|
+      format.js
+      format.html
+    end
 
 
   end
@@ -55,6 +55,21 @@ class ProductsController < ApplicationController
     @product.destroy
 
     redirect_to products_path
+  end
+
+  def product_yearly_sales
+
+      if params[:date].present?
+      @year= params[:date][:year].to_i
+
+      else
+        @year= Date.today.year
+
+      end
+
+    @products = Product.all
+    @total_sell = Product.get_total_sell(@year)
+
   end
 
 

@@ -17,6 +17,7 @@
       <div class="alignR">
 
         <a> <span class="icon-home"></span><%= link_to 'Home', root_path %></a>
+        <a ><span class="icon-bar-chart"></span> <%= link_to 'Yearly_product_sales', yearly_products_sales_path%></a>
 
         <% if admin_signed_in? %>
 
@@ -26,7 +27,9 @@
         <a ><span class="icon-sort-by-order"></span><%= link_to 'Orders', orders_path %></a>
         <a ><span class="icon-edit"></span><%= link_to('Edit registration', edit_admin_registration_path) %></a>
         <a ><span class="icon-signout"></span> <%= link_to('Logout', destroy_admin_session_path, method: :delete) %></a>
-        <% end %>
+
+
+      <% end %>
 
         <% if user_signed_in? %>
             <a href="#"><span class="icon-user"></span> My Account</a>

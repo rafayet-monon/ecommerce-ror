@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
 
+
   resources :orders
   resources :line_items
   resources :carts
+
 
   devise_for :users, path: 'users', controllers: { sessions: "users/sessions" }
   devise_for :admins, path: 'admins', controllers: {session: "admins/sessions"}
@@ -22,4 +24,7 @@ Rails.application.routes.draw do
 
   get '/product-by-category/:id' , to: 'store#product_by_category' , as: 'category_product'
   get '/product-details/:id' , to: 'store#product_details' ,  as: "product_details"
+
+  get '/report/product-yearly-sales', to: 'products#product_yearly_sales' , as: 'yearly_products_sales'
+
 end
