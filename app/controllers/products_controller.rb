@@ -59,16 +59,38 @@ class ProductsController < ApplicationController
 
   def product_yearly_sales
 
-      if params[:date].present?
+    if params[:date].present?
       @year= params[:date][:year].to_i
 
-      else
-        @year= Date.today.year
 
-      end
+    else
+      @year= Date.today.year
+
+
+    end
 
     @products = Product.all
     @total_sell = Product.get_total_sell(@year)
+
+  end
+
+  def product_monthly_sales
+
+    if params[:date].present?
+      @year= params[:date][:year].to_i
+      @month=params[:date][:month].to_i
+
+      @days_of_month = Time.days_in_month(@month , @year)
+
+    else
+      @year= Date.today.year
+      @month = Date.today.month
+
+      @days_of_month = Time.days_in_month(@month , @year)
+    end
+
+    @products = Product.all
+    @total_sell_by_month = Product.get_total_sell_by_month(@year , @month, @days_of_month)
 
   end
 

@@ -49,6 +49,39 @@ class CategoriesController < ApplicationController
     @subcategories=Category.all.where(parent_id: @category.id )
   end
 
+
+  def category_yearly_sales
+
+    if params[:date].present?
+      @year= params[:date][:year].to_i
+
+    else
+      @year= Date.today.year
+
+    end
+
+    @categories =Category.all.where(parent_id: nil)
+    @total_sell = Category.get_total_sell(@year)
+
+
+  end
+
+  def category_monthly_sales
+
+    if params[:date].present?
+      @year= params[:date][:year].to_i
+      @month=params[:date][:month].to_i
+
+    else
+      @year= Date.today.year
+      @month = Date.today.month
+    end
+
+    @days_of_month = Time.days_in_month(@month , @year)
+    @categories =Category.all.where(parent_id: nil)
+    @total_sell_by_month = Category.get_total_sell_by_month(@year , @month, @days_of_month)
+  end
+
   private
   def category_params
   params.require(:category).permit!

@@ -1,11 +1,24 @@
 <div id="sidebar" class="span3">
 
   <div class="well well-small">
+
+
+    <% if admin_signed_in? %>
+
+        <h3>Reports</h3>
+    <ul class="nav nav-list">
+      <li><%= link_to 'Yearly Product Sales', yearly_products_sales_path%></li>
+      <li><%= link_to 'Monthly Product Sales', monthly_products_sales_path%></li>
+      <li><%= link_to 'Yearly Categorized Sales', category_yearly_sales_path%></li>
+      <li><%= link_to 'Monthly Categorized Sales', category_monthly_sales_path%></li>
+    </ul>
+    <% end %>
+
     <h3>Categories</h3>
     <ul class="nav nav-list">
 
         <% @categories.each do |category| %>
-      <li><span class="icon-chevron-right"><%= link_to category.category_name, category_product_path(category) %></span></li>
+      <li><%= link_to category.category_name, category_product_path(category) %></span></li>
 
       <% end %>
 

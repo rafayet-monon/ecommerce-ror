@@ -17,29 +17,29 @@
       <div class="alignR">
 
         <a> <span class="icon-home"></span><%= link_to 'Home', root_path %></a>
-        <a ><span class="icon-bar-chart"></span> <%= link_to 'Yearly_product_sales', yearly_products_sales_path%></a>
+
 
         <% if admin_signed_in? %>
 
-        <a><span class="icon-edit"></span><%= link_to 'Categories', categories_path %></a>
-        <a><span class="icon-edit"></span><%= link_to 'Brands', brands_path %></a>
-        <a ><span class="icon-paper-clip"></span><%= link_to 'Add Products', products_path %></a>
-        <a ><span class="icon-sort-by-order"></span><%= link_to 'Orders', orders_path %></a>
-        <a ><span class="icon-edit"></span><%= link_to('Edit registration', edit_admin_registration_path) %></a>
-        <a ><span class="icon-signout"></span> <%= link_to('Logout', destroy_admin_session_path, method: :delete) %></a>
+            <a><span class="icon-edit"></span><%= link_to 'Categories', categories_path %></a>
+            <a><span class="icon-edit"></span><%= link_to 'Brands', brands_path %></a>
+            <a ><span class="icon-paper-clip"></span><%= link_to 'Add Products', products_path %></a>
+            <a ><span class="icon-sort-by-order"></span><%= link_to 'Orders', orders_path %></a>
+            <a ><span class="icon-edit"></span><%= link_to('Edit registration', edit_admin_registration_path) %></a>
+            <a ><span class="icon-signout"></span> <%= link_to('Logout', destroy_admin_session_path, method: :delete) %></a>
 
 
-      <% end %>
+        <% end %>
 
         <% if user_signed_in? %>
-            <a href="#"><span class="icon-user"></span> My Account</a>
+
             <a ><span class="icon-edit"></span><%= link_to('Edit Account', edit_user_registration_path) %></a>
 
             <a ><span class="icon-signout"></span> <%= link_to('Logout', destroy_user_session_path, method: :delete) %></a>
         <% else %>
             <a ><span class="icon-edit"></span><%= link_to('Register', new_user_registration_path) %></a>
-      <% end %>
-        <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
+        <% end %>
+
 
 
       </div>
@@ -70,22 +70,26 @@ Lower Header Section
         <div class="nav-collapse">
           <ul class="nav">
             <li class="active"><%= link_to 'Home', root_path %></li>
-                      </ul>
+
+
+          </ul>
           <form action="#" class="navbar-search pull-left">
             <input type="text" placeholder="Search" class="search-query span2">
           </form>
           <ul class="nav pull-right ">
+
+
             <% if admin_signed_in? || user_signed_in? %>
 
-                <% else %>
+            <% else %>
 
-            <li>
-              <%= link_to('Admin Login', new_admin_session_path) %>
-            </li>
-            <li>
-              <%= link_to('User Login', new_user_session_path) %>
-            </li>
-                <% end %>
+                <li>
+                  <%= link_to('Admin Login', new_admin_session_path) %>
+                </li>
+                <li>
+                  <%= link_to('User Login', new_user_session_path) %>
+                </li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -93,21 +97,21 @@ Lower Header Section
   </div>
 
   <!-- Sidebar-->
-<div class="row">
-  <% if notice %>
-  <p class="notice"><%= notice %></p>
+  <div class="row">
+    <% if notice %>
+        <p class="notice"><%= notice %></p>
 
-  <% end %>
+    <% end %>
 
-  <% if alert %>
-  <p class="alert"><%= alert %></p>
-  <% end %>
+    <% if alert %>
+        <p class="alert"><%= alert %></p>
+    <% end %>
 
 
     <%= yield %>
 
 
-</div>
+  </div>
 
   <!-- sidebar ends-->
 

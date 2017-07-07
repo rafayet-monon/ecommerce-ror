@@ -26,5 +26,8 @@ Rails.application.routes.draw do
   get '/product-details/:id' , to: 'store#product_details' ,  as: "product_details"
 
   get '/report/product-yearly-sales', to: 'products#product_yearly_sales' , as: 'yearly_products_sales'
+  get '/report/product-monthly-sales', to: 'products#product_monthly_sales' , as: 'monthly_products_sales'
+  get '/report/category-yearly-sales', to: 'categories#category_yearly_sales' , as:'category_yearly_sales'
+  get '/report/category-monthly-sales', to: 'categories#category_monthly_sales' , as:'category_monthly_sales'
 
 end
