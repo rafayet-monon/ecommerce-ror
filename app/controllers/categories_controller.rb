@@ -9,16 +9,26 @@ class CategoriesController < ApplicationController
   def new
     @categories=Category.all.where(parent_id: nil)
     @category = Category.new
+
+    respond_to do |format|
+      format.js {}
+    end
   end
 
   def edit
     @category = Category.find(params[:id])
+    respond_to do |format|
+      format.js {}
+    end
   end
 
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-      redirect_to categories_path
+      # redirect_to categories_path
+      respond_to do |format|
+        format.js {}
+      end
     end
   end
 

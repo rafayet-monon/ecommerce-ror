@@ -48,5 +48,6 @@ group :development do
   gem 'mini_magick', '~> 4.3'
 
   gem 'devise'
+  gem 'bootstrap-sass'
 end
 

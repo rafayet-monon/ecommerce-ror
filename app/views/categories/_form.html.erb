@@ -1,0 +1,43 @@
+
+<%= form_for @category , html: {class: "form-horizontal", id: "new-category-form" }, remote: true do |f| %>
+
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title"><% if params[:is_subcategory] %>Add Sub Category <% else %> Add Category <% end %></h4>
+    </div>
+
+    <div class="modal-body">
+
+
+      <div class="control-group">
+        <%= f.label :category_name , class: "control-label" %>
+        <!--<label class="control-label">Category Name<sup>*</sup></label>-->
+        <div class="controls">
+          <%= f.text_field :category_name, placeholder: 'Name'  %>
+          <!--<input type="text" placeholder="Name">-->
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :category_description , class: "control-label" %>
+        <div class="controls">
+          <%= f.text_area :category_description, placeholder: 'Short Description'  %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <% if params[:is_subcategory]%>
+            <%= f.label :parent_id , class: "control-label" %>
+            <div class="controls">
+              <%= f.select :parent_id, @categories.collect {|category| [category.category_name, category.id]}  %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="pull-right">
+        <%= f.submit "Save", class: "shopBtn", id: "modal-save"  %>
+        <div class="shopBtn" data-dismiss='modal'>Cancel</div>
+      </div>
+    </div>
+<% end %>

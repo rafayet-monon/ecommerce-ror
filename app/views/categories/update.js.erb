@@ -1,0 +1,2 @@
+$('#category_<%= @category.id %>').replaceWith('<%= escape_javascript(render 'table_row', category: @category ).html_safe%>');
+$("#modal-window").modal('hide')
